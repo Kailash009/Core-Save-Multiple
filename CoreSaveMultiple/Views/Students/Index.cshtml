@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Student>
+
+<h1>Show ALL Student</h1>
+<form asp-action="updateStudents" method="post">
+    <table class="table table-bordered">
+        <tr>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>ADDRESS</th>
+            <th>MOBILENO</th>
+            <th>CITY</th>
+            <th>FEES</th>
+        </tr>
+        @foreach(var student in Model)
+        {
+            <tr>
+                <td><input type="text" name="Students[@student.id].name" value="@student.name" /></td>
+                <td><input type="text" name="Students[@student.id].age" value="@student.age" /></td>
+                <td><input type="text" name="Students[@student.id].address" value="@student.address" disabled /></td>
+                <input type="hidden" name="Students[@student.id].address" value="@student.address" />
+                <td><input type="text" name="Students[@student.id].mobileno" value="@student.mobileno" disabled /></td>
+                <input type="hidden" name="Students[@student.id].mobileno" value="@student.mobileno" />
+                <td><input type="text" name="Students[@student.id].city" value="@student.city" disabled /></td>
+                <input type="hidden" name="Students[@student.id].city" value="@student.city" />
+                <td><input type="text" name="Students[@student.id].fees" value="@student.fees" /></td>
+                <input type="hidden" name="Students[@student.id].id" value="@student.id" />
+            </tr>
+        }
+    </table>
+    <button type="submit" class="btn btn-dark">Update</button>
+</form>
+
+@* <script>
+    function submitForm() {
+        var students = [
+            { age: txtAge, address: txtAddress, city: txtCity},
+        ];
+        var form = document.getElementById('myForm');
+        var textAge = document.getElementById('txtAge');
+        textAge.disabled = false; // Temporarily enable the input
+        var textAddress = document.getElementById('txtAddress');
+        textAddress.disabled = false; // Temporarily enable the input
+        var textCity = document.getElementById('txtCity');
+        textCity.disabled = false; // Temporarily enable the input
+        form.submit(); // Submit the form
+    }
+</script> *@
